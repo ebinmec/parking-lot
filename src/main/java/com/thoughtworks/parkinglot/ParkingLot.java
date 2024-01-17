@@ -2,6 +2,7 @@ package com.thoughtworks.parkinglot;
 
 import com.thoughtworks.parkinglot.exceptions.AlreadyParkedException;
 import com.thoughtworks.parkinglot.exceptions.ParkingLotFullException;
+import main.java.com.thoughtworks.parkinglot.exceptions.ParkableNotFoundException;
 
 import java.util.HashSet;
 
@@ -20,6 +21,14 @@ public class ParkingLot {
         if (isParked(parkable))
             throw new AlreadyParkedException();
         parkedVehicles.add(parkable);
+    }
+
+    public void unpark(Parkable parkable) throws ParkableNotFoundException{
+        if (isParked(parkable))
+           parkedVehicles.remove(parkable);
+        else
+           throw new ParkableNotFoundException();
+           
     }
 
     public boolean isParked(Parkable parkable) {
